@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc Mừng Ngày Phụ nữ Việt Nam 20/10</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .gift-container {
+            position: relative;
+            cursor: pointer;
+            transition: all 0.5s ease;
+        }
+
+        .gift-box {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(145deg, #ff69b4, #ff1493);
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .ribbon-horizontal {
+            position: absolute;
+            width: 100%;
+            height: 30px;
+            background: linear-gradient(145deg, #ffb6c1, #ff69b4);
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .ribbon-vertical {
+            position: absolute;
+            width: 30px;
+            height: 100%;
+            background: linear-gradient(145deg, #ffb6c1, #ff69b4);
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .bow {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .bow-left, .bow-right {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(145deg, #ffb6c1, #ff69b4);
+            border-radius: 50% 50% 0 50%;
+            position: absolute;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .bow-left {
+            left: -50px;
+            transform: rotate(-45deg);
+        }
+
+        .bow-right {
+            right: -50px;
+            transform: rotate(45deg);
+        }
+
+        .bow-center {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(145deg, #ff69b4, #ff1493);
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            top: 15px;
+            transform: translateX(-50%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .card {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: linear-gradient(135deg, #fff5f8 0%, #ffffff 100%);
+            padding: 50px 40px;
+            border-radius: 30px;
+            box-shadow: 0 25px 80px rgba(255, 105, 180, 0.25), 0 10px 40px rgba(0,0,0,0.1);
+            max-width: 420px;
+            width: 90%;
+            text-align: center;
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 1000;
+            border: 2px solid rgba(255, 192, 203, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .card.active {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        .card-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 5px;
+            object-fit: cover;
+            border: 3px solid #ff69b4;
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.4);
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            padding: 3px;
+        }
+
+        .card h2 {
+            color: #ff1493;
+            margin-bottom: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            text-shadow: 0 2px 10px rgba(255, 20, 147, 0.2);
+        }
+
+        .card p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+
+        .card .sender {
+            color: #888;
+            font-style: italic;
+            font-size: 13px;
+            margin-top: 25px;
+            margin-bottom: 20px;
+        }
+
+        .music-player {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 192, 203, 0.3);
+        }
+
+        .music-player audio {
+            width: 100%;
+            height: 40px;
+            border-radius: 20px;
+            outline: none;
+        }
+
+        audio::-webkit-media-controls-panel {
+            background: linear-gradient(135deg, #ffb6c1, #ff69b4);
+        }
+
+        audio::-webkit-media-controls-play-button,
+        audio::-webkit-media-controls-mute-button {
+            background-color: #fff;
+            border-radius: 50%;
+        }
+
+        .firework {
+            position: fixed;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .petal {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(145deg, #ff69b4, #ffb6c1);
+            border-radius: 50% 0 50% 0;
+            pointer-events: none;
+            animation: fall linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0.3;
+            }
+        }
+
+        .sparkle {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: sparkle 1s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        .fade-out {
+            animation: fadeOut 1s ease-out forwards;
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="gift-container" id="giftContainer">
+        <div class="gift-box">
+            <div class="ribbon-horizontal"></div>
+            <div class="ribbon-vertical"></div>
+            <div class="bow">
+                <div class="bow-left"></div>
+                <div class="bow-right"></div>
+                <div class="bow-center"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card" id="card">
+        <img id="cardImage" src="" alt="Ảnh" class="card-image">
+        <h2 id="cardName">Người đặc biệt 🌹</h2>
+        <p>Chúc bạn có một ngày 20/10 thật hạnh phúc, rực rỡ và tràn đầy yêu thương 💗</p>
+        <p class="sender" id="cardSender">— Gửi bởi người bí mật 🌹</p>
+        <div class="music-player">
+            <audio controls id="bgMusic" loop>
+                <source src="https://files.catbox.moe/miap8s.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+    </div>
+
+    <script>
+        // Đọc parameters từ URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const personName = urlParams.get('name') || 'Người đặc biệt';
+        const personImage = urlParams.get('img') || 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=300&h=300&fit=crop';
+        const senderName = urlParams.get('from') || 'người bí mật';
+
+        // Cập nhật thông tin vào card
+        document.getElementById('cardName').textContent = personName + ' 🌹';
+        document.getElementById('cardImage').src = personImage;
+        document.getElementById('cardSender').textContent = '— Gửi bởi ' + senderName + ' 🌹';
+
+        const giftContainer = document.getElementById('giftContainer');
+        const card = document.getElementById('card');
+        const bgMusic = document.getElementById('bgMusic');
+        let opened = false;
+
+        giftContainer.addEventListener('click', function() {
+            if (!opened) {
+                opened = true;
+
+                // Fade out gift box
+                giftContainer.classList.add('fade-out');
+
+                // Launch initial fireworks
+                setTimeout(() => {
+                    launchFireworks(15);
+                }, 300);
+
+                // Show card
+                setTimeout(() => {
+                    giftContainer.style.display = 'none';
+                    card.classList.add('active');
+
+                    // Auto play music
+                    const music = document.getElementById('bgMusic');
+                    music.play().catch(e => {
+                        console.log('Auto-play prevented. User needs to click play button.');
+                    });
+
+                    // Start continuous effects
+                    startPetalsFall();
+                    continuousFireworks();
+                }, 1000);
+            }
+        });
+
+        function launchFireworks(count) {
+            for (let i = 0; i < count; i++) {
+                setTimeout(() => {
+                    createFirework();
+                }, i * 100);
+            }
+        }
+
+        function createFirework() {
+            const colors = ['#ff1493', '#ff69b4', '#ffb6c1', '#ffd700', '#ff6347', '#00ffff'];
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight * 0.7;
+
+            for (let i = 0; i < 30; i++) {
+                const firework = document.createElement('div');
+                firework.className = 'firework';
+                firework.style.left = x + 'px';
+                firework.style.top = y + 'px';
+                firework.style.background = colors[Math.floor(Math.random() * colors.length)];
+                document.body.appendChild(firework);
+
+                const angle = (Math.PI * 2 * i) / 30;
+                const velocity = 2 + Math.random() * 3;
+                const vx = Math.cos(angle) * velocity;
+                const vy = Math.sin(angle) * velocity;
+
+                animateFirework(firework, vx, vy);
+            }
+        }
+
+        function animateFirework(element, vx, vy) {
+            let x = parseFloat(element.style.left);
+            let y = parseFloat(element.style.top);
+            let opacity = 1;
+
+            const animate = () => {
+                x += vx;
+                y += vy;
+                opacity -= 0.02;
+
+                element.style.left = x + 'px';
+                element.style.top = y + 'px';
+                element.style.opacity = opacity;
+
+                if (opacity > 0) {
+                    requestAnimationFrame(animate);
+                } else {
+                    element.remove();
+                }
+            };
+
+            animate();
+        }
+
+        function startPetalsFall() {
+            setInterval(() => {
+                createPetal();
+            }, 300);
+        }
+
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            petal.style.left = Math.random() * window.innerWidth + 'px';
+            petal.style.animationDuration = (3 + Math.random() * 4) + 's';
+            petal.style.animationDelay = '0s';
+
+            // Add sparkle effect
+            if (Math.random() > 0.7) {
+                petal.classList.add('sparkle');
+            }
+
+            document.body.appendChild(petal);
+
+            setTimeout(() => {
+                petal.remove();
+            }, 8000);
+        }
+
+        function continuousFireworks() {
+            setInterval(() => {
+                createFirework();
+            }, 2000);
+        }
+
+        // Create initial sparkles around the gift
+        setInterval(() => {
+            if (!opened) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = (window.innerWidth / 2 - 100 + Math.random() * 200) + 'px';
+                sparkle.style.top = (window.innerHeight / 2 - 100 + Math.random() * 200) + 'px';
+                document.body.appendChild(sparkle);
+
+                setTimeout(() => sparkle.remove(), 1000);
+            }
+        }, 200);
+    </script>
+</body>
+</html>
+```
+
+---
+
+## 📝 **CÁCH DÙNG:**
+
+**1. Lưu code trên thành file `thiep.html`**
+
+**2. Upload ảnh lên Catbox.moe, lấy link**
+
+**3. Tạo link cho từng người:**
+```
+thiep.html?name=Chị Hoa&img=https://files.catbox.moe/abc123.jpg&from=Alex Sơn
+thiep.html?name=Chị Lan&img=https://files.catbox.moe/def456.jpg&from=Alex Sơn
